@@ -1,0 +1,23 @@
+﻿@model Product
+@{
+}
+<div class="container">
+    <form asp-action="Update" method="post" dir="rtl">
+        <input type="hidden" asp-for="@Model.Id" />
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="ProductName">اسم المنتج</label>
+                <input asp-for="@Model.ProductName" class="form-control" id="ProductName" name="ProductName" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 d-flex mt-2 justify-content-sm-center">
+
+                <button type="submit" class="btn btn-primary p-2">حفظ</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
