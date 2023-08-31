@@ -31,15 +31,20 @@
 							<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
 							الفواتير
 						</a>
+					    <a class="nav-link" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+						بطاقات الدفع المعتمدة
+					    </a>
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
 					<div class="small">Logged in as:</div>
+				    <p>@ViewBag.Name</p>
 					<partial name="_LoginPartial" />
 				</div>
 			</nav>
 		</div>
-<div class="container">
+	<div class="container-fluid" dir="rtl">
 	<div class="row ">
 		<div class="col-sm-10">
 			<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -55,7 +60,7 @@
 					<div id="kt_app_content p-10" class="app-content flex-column-fluid">
 						<!--begin::Content container-->
 						<div id="kt_app_content_container p-5" class="app-container container-xxl" dir="rtl">
-							<div class="card">
+								<div class="card" style="overflow-x: auto;">
 								<!--begin::Card header-->
 								<div class="card-header border-0 pt-6">
 									<!--begin::Card title-->
@@ -70,7 +75,7 @@
 												</svg>
 											</span>
 											<!--end::Svg Icon-->
-											<input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="  Search Customers" />
+											<input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="    Search Customers" />
 										</div>
 										<!--end::Search-->
 									</div>

@@ -65,14 +65,21 @@ namespace Dashboard.Controllers
             var products = _context.product.ToList();
 			var productDetails = _context.productDetails.ToList();
 			ViewBag.ProductDetails = productDetails;
-			return View(products);
+			//ViewBag.Name = Request.Cookies["Name"];
+			ViewBag.Name = HttpContext.Session.GetString("Name");
+            return View(products);
         }
 		[Authorize]
         public IActionResult Index()
         {
 			var products = _context.product.ToList();
-			//var Name = HttpContext.User.Identity.Name;
-			//ViewBag.Name = Name;
+			var Name = HttpContext.User.Identity.Name;
+			//CookieOptions options = new CookieOptions();
+			//options.Expires = DateTime.Now.AddMinutes(10);
+			//Response.Cookies.Append("Name", Name, options);
+
+			HttpContext.Session.SetString("Name", Name);
+			ViewBag.Name = Name;
 			return View(products);
 		}
 

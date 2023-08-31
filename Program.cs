@@ -22,7 +22,7 @@ internal class Program
         });
         builder.Services.AddDefaultIdentity<DashboardUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<DashboardDbContext>();
         builder.Services.AddRazorPages();
-
+        builder.Services.AddSession();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -44,6 +44,7 @@ internal class Program
             pattern: "{controller=Home}/{action=Index}/{id?}");
         app.MapRazorPages();
         app.UseDeveloperExceptionPage();
+        app.UseSession();
         app.Run();
     }
 }
