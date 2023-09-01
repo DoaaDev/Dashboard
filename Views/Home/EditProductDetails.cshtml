@@ -1,0 +1,85 @@
+﻿@model ProductDetails
+@{
+}
+<div id="layoutSidenav">
+	<div id="layoutSidenav_nav">
+		<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+			<div class="sb-sidenav-menu">
+				<div class="nav">
+					<div class="sb-sidenav-menu-heading">Core</div>
+					<a class="nav-link" href="index.html">
+						<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+						Dashboard
+					</a>
+					<a class="nav-link" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+						المنتجات
+					</a>
+					<a class="nav-link" asp-action="ProductDetails">
+						<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+						تفاصيل المنتجات
+					</a>
+					<a class="nav-link" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+						الزبائن
+					</a>
+					<a class="nav-link" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+						الفواتير
+					</a>
+					<a class="nav-link" asp-action="PaymentAccept">
+						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+						بطاقات الدفع المعتمدة
+					</a>
+				</div>
+			</div>
+			<div class="sb-sidenav-footer">
+				<div class="small">Logged in as:</div>
+				<p>@ViewBag.Name</p>
+				<partial name="_LoginPartial" />
+			</div>
+		</nav>
+	</div>
+</div>
+
+<div class="container-fluid">
+    <form asp-action="UpdateProductDetails" method="post" dir="rtl">
+        <input type="hidden" asp-for="@Model.Id" />
+		<input type="hidden" id="ProductId" name="ProductId" asp-for="@Model.ProductId" />
+        <div class="row">
+            <div class="col-sm-8 mt-2">
+                <label for="Description">وصف المنتج</label>
+                <input asp-for="@Model.Description" class="form-control" id="Description" name="Description" required/>
+            </div>
+            <div class="col-sm-8 mt-2">
+                <label for="Price">سعر المنتج</label>
+                <input asp-for="@Model.Price" class="form-control" id="Price" name="Price" required />
+            </div>
+            <div class="col-sm-8 mt-2">
+                <label for="Model">طراز المنتج</label>
+                <input asp-for="@Model.Model" class="form-control" id="Model" name="Model" required />
+            </div>
+            <div class="col-sm-8 mt-2">
+                <label for="QTY">كمية المنتج</label>
+                <input asp-for="@Model.QTY" class="form-control" id="QTY" name="QTY" required />
+            </div>
+            <div class="col-sm-8 mt-2">
+                <label for="Color">لون المنتج</label>
+                <input asp-for="@Model.Color" class="form-control" id="Color" name="Color" required />
+            </div>
+            <div class="col-sm-8 mt-2">
+                <label for="Image">صورة المنتج</label>
+                <input asp-for="@Model.Image" class="form-control" id="Image" name="Image" required />
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-sm-6 d-flex mt-2 justify-content-sm-center">
+
+                <button type="submit" class="btn btn-primary p-2">حفظ</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

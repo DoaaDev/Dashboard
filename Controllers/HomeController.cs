@@ -52,6 +52,28 @@ namespace Dashboard.Controllers
 			_context.SaveChanges();
 			return RedirectToAction("ProductDetails");
 		}
+		public IActionResult UpdateProductDetails(ProductDetails productDetails)
+		{
+			_context.productDetails.Update(productDetails);
+			_context.SaveChanges();
+			return RedirectToAction("ProductDetails");
+		}
+		public IActionResult EditProductDetails(int id)
+		{
+			var productDetails = _context.productDetails.SingleOrDefault(x => x.Id == id);
+
+			return View(productDetails);
+		}
+		public IActionResult DeleteProductDetails(int id)
+		{
+			var ProductDetails = _context.productDetails.SingleOrDefault(p => p.Id == id);
+			if (ProductDetails != null)
+			{
+				_context.productDetails.Remove(ProductDetails);
+				_context.SaveChanges();
+			}
+			return RedirectToAction("ProductDetails");
+		}
 		[HttpPost]
 		public IActionResult ProductDetails(int id)
 		{
@@ -59,6 +81,26 @@ namespace Dashboard.Controllers
 			var products = _context.product.ToList();
 			ViewBag.ProductDetails = productDetails;
 			return View(products);
+		}
+		public IActionResult PaymentAccept()
+		{
+            var paymentAcceptList = _context.paymentAccept.ToList();
+            ViewBag.paymentAcceptList = paymentAcceptList;
+            return View();
+		}
+		[HttpPost]
+		public IActionResult PaymentAccept(PaymentAccept paymentAccept)
+		{
+            var paymentAcceptList = _context.paymentAccept.ToList();
+            ViewBag.paymentAcceptList = paymentAcceptList;
+
+            if (ModelState.IsValid)
+			{
+				_context.paymentAccept.Add(paymentAccept);
+				_context.SaveChanges();
+				return RedirectToAction("PaymentAccept");
+			}
+			return View();
 		}
 		public IActionResult ProductDetails()
         {

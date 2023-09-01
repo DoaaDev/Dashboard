@@ -29,7 +29,7 @@
 						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
 						الفواتير
 					</a>
-					<a class="nav-link" asp-action="Index">
+					<a class="nav-link" asp-action="PaymentAccept">
 						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
 						بطاقات الدفع المعتمدة
 					</a>
@@ -42,7 +42,7 @@
 			</div>
 		</nav>
 	</div>
-
+</div>
 	<div class="container-fluid" dir="rtl">
 	<div class="row ">
 		<div class="col-sm-10">
@@ -119,8 +119,7 @@
 											<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
 												<th class="min-w-125px text-end" style="font-family:cairo">رقم المنتج </th>
 												<th class="min-w-125px text-end" style="font-family:cairo"> اسم المنتج </th>
-												<th colspan="2" class="min-w-125px text-end" style="font-family:cairo">إجراء </th>
-
+												<th class="min-w-125px text-end" style="font-family:cairo">إجراء </th>
 											</tr>
 											<!--end::Table row-->
 										</thead>
@@ -135,8 +134,8 @@
 													<tr>
 													<td>@item.Id</td>
 													<td>@item.ProductName</td>
-														<td><a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a></td>
-														<td><a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
+													<td><a asp-action="Delete" asp-route-id="@item.Id" class="ml-1"><i class="fa fa-trash"></i></a>
+													<a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
 													</tr>
 												}
 											}
@@ -162,7 +161,7 @@
 												<div class="row">
 													<div class="col-sm-12">
 														<lable for="ProductName"> اسم المنتج</lable>
-														<input type="text" name="ProductName" id="ProductName" class="form-control" />
+														<input type="text" name="ProductName" id="ProductName" class="form-control" required />
 													</div>
 													</div>
 											</div>

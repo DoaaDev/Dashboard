@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ProductDetails>;
+@{
+    Layout = "~/Views/Shared/_LayoutShopping.cshtml";
+    var product = ViewBag.product;
+}
+
+<div class="container">
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row justify-content-center mb-3">
+                <h1>تفاصيل المنتج</h1>
+            </div>
+            <section class="h-100 gradient-custom">
+                <div class="container py-5">
+                    <div class="row d-flex justify-content-center my-4">
+                        <div class="col-md-8">
+                            <div class="card mb-4">
+                                <div class="card-header py-3">
+                                    <h5 class="mb-0">تفاصيل المنتج</h5>
+                                </div>
+                                @foreach(var item in Model)
+                                {
+                                    <div class="card-body">
+                                        <!-- Single item -->
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <!-- Image -->
+                                                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                                    <img src="~/assets/images/@item.Image"
+                                                         class="w-100" />
+                                                    <a href="#!">
+                                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                                    </a>
+                                                </div>
+                                                <!-- Image -->
+                                            </div>
+
+                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Data -->
+                                                        @foreach (var item1 in product)
+                                                        {
+                                                    <p><strong>@item1.ProductName </strong></p>
+                                                        }
+                                                <p>وصف المنتج: @item.Description </p>
+                                                <p>اللون: @item.Color </p>
+                                                <p>الطراز: @item.Model</p>
+                                                <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
+                                                        title="Move to the wish list">
+                                                    <i class="fas fa-heart"></i>
+                                                </button>
+                                                <!-- Data -->
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Quantity -->
+                                                <label class="form-label" for="form1">الكمية : متوفر @item.QTY</label>
+                                                <div class="d-flex mb-4" style="max-width: 300px">
+                                                    <button class="btn btn-primary px-3 me-2"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button>
+                                                    <div class="form-outline">
+                                                        <input id="form1" min="1" max="@item.QTY" name="quantity" value="1" type="number" class="form-control" />
+                                                    </div>
+
+                                                    <button class="btn btn-primary px-3 ms-2"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- Quantity -->
+                                                <!-- Price -->
+                                                <p class="text-start text-md-center">
+                                                    <strong>@item.Price</strong>
+                                                </p>
+                                                <!-- Price -->
+                                            </div>
+                                        </div>
+                                        <!-- Single item -->
+
+                                        <hr class="my-4" />
+                                        <a asp-action="Checkout" asp-route-id="@item.Id" class="btn btn-primary btn-lg btn-block">
+                                            اشتري الآن
+                                        </a>
+                                        <a asp-action="Index" class="btn btn-primary btn-lg btn-block">
+                                            متابعة التسوق
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</div>

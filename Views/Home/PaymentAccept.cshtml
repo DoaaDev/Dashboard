@@ -3,19 +3,100 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	var paymentAcceptList = ViewBag.paymentAcceptList;
 }
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-6 mx-auto mt-5">
-			<h1>Enter Your Credit Card Number</h1>
-			<form>
-				<div class="form-group">
-					<label for="payment">Credit Card Number:</label>
-					<input type="text" asp-for="@Model.Payment" class="form-control" id="payment" name="payment" placeholder="Enter your credit card number">
+<div id="layoutSidenav">
+	<div id="layoutSidenav_nav">
+		<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+			<div class="sb-sidenav-menu">
+				<div class="nav">
+					<div class="sb-sidenav-menu-heading">Core</div>
+					<a class="nav-link" href="index.html">
+						<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+						Dashboard
+					</a>
+					<a class="nav-link" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+						المنتجات
+					</a>
+					<a class="nav-link" asp-action="ProductDetails">
+						<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+						تفاصيل المنتجات
+					</a>
+					<a class="nav-link" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+						الزبائن
+					</a>
+					<a class="nav-link" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+						الفواتير
+					</a>
+					<a class="nav-link" asp-action="PaymentAccept">
+						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+						بطاقات الدفع المعتمدة
+					</a>
 				</div>
-				<button type="submit" class="btn btn-primary">Save</button>
-			</form>
+			</div>
+			<div class="sb-sidenav-footer">
+				<div class="small">Logged in as:</div>
+				<p>@ViewBag.Name</p>
+				<partial name="_LoginPartial" />
+			</div>
+		</nav>
+	</div>
+
+	<div class="container-fluid mt-4" dir="rtl">
+	<form asp-action="PaymentAccept" method="post">
+	<div class="row d-flex justifiy-content-center">
+		<div class="col-md-6 mx-auto mt-5 mb-3">
+				<h1 class="mb-3">يرجى ادخال البطاقة لاعتمادها</h1>
+				<div class="form-group mb-3">
+					<label for="payment" class="mb-3">ادخل نوع البطاقة :</label>
+					<input type="text" asp-for="@Model.Payment" class="form-control mb-3" id="payment" name="payment" placeholder="ادخل نوع البطاقة">
+					<span class="text-danger" asp-validation-for="@Model.Payment"></span>
+				</div>
+				<button type="submit" class="btn btn-primary mb-3">حفظ</button>
 		</div>
 	</div>
+		<div class="row d-flex justifiy-content-center">
+		<div class="clo-sm-6">
+					<!--begin::Table-->
+					<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
+						<!--begin::Table head-->
+						<thead>
+							<!--begin::Table row-->
+							<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+								<th class="min-w-125px text-end" style="font-family:cairo">رقم البطاقة </th>
+								<th class="min-w-125px text-end" style="font-family:cairo"> نوع البطاقة </th>
+								<th clospan="2" class="min-w-125px text-end" style="font-family:cairo">إجراء </th>
+							</tr>
+							<!--end::Table row-->
+						</thead>
+						<!--end::Table head-->
+						<!--begin::Table body-->
+						<tbody class="fw-semibold text-gray-600">
+
+							@if (paymentAcceptList != null)
+							{
+								foreach (var item in paymentAcceptList)
+								{
+									<tr>
+										<td>@item.Id</td>
+										<td>@item.Payment</td>
+										<td>
+											<a><i class="fa fa-trash"></i></a>
+											<a><i class="fa fa-edit"></i></a>
+										</td>
+									</tr>
+								}
+							}
+
+						</tbody>
+						<!--end::Table body-->
+					</table>
+		</div>
+	</div>
+	</form>
 </div>

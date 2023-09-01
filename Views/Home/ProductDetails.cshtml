@@ -31,7 +31,7 @@
 							<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
 							الفواتير
 						</a>
-					    <a class="nav-link" asp-action="Index">
+					<a class="nav-link" asp-action="PaymentAccept">
 						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
 						بطاقات الدفع المعتمدة
 					    </a>
@@ -128,15 +128,13 @@
 											<!--begin::Table row-->
 											<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
 												<th class="min-w-125px text-end" style="font-family:cairo">رقم المنتج </th>
-												<th class="min-w-125px text-end" style="font-family:cairo">اسم المنتج </th>
 												<th class="min-w-125px text-end" style="font-family:cairo"> وصف المنتج </th>
 												<th class="min-w-125px text-end" style="font-family:cairo"> سعر المنتج </th>
 												<th class="min-w-125px text-end" style="font-family:cairo"> طراز المنتج </th>
 												<th class="min-w-125px text-end" style="font-family:cairo"> كمية المنتج </th>
 												<th class="min-w-125px text-end" style="font-family:cairo"> لون المنتج </th>
 												<th class="min-w-125px text-end" style="font-family:cairo"> صورة المنتج </th>
-												<th colspan="2" class="min-w-125px text-end" style="font-family:cairo">إجراء </th>
-
+												<th clospan="2" class="min-w-125px text-end" style="font-family:cairo">إجراء </th>
 											</tr>
 											<!--end::Table row-->
 										</thead>
@@ -149,26 +147,15 @@
 												foreach (var item in ProductDetails)
 												{
 													<tr>
-														@if (Model != null)
-														{
-															@foreach (var item1 in Model)
-															{
-																@if (item1.Id == item.ProductId)
-																{
-																	var productName = item1.ProductName;
-																}
-															}
-														}
-													    <td>@item.ProductId</td>
-													    <td></td>
+														<td>@item.ProductId</td>
 														<td>@item.Description</td>
 														<td>@item.Price</td>
 														<td>@item.Model</td>
 														<td>@item.QTY</td>
 														<td>@item.Color</td>
 														<td>@item.Image</td>
-														<td><a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a></td>
-														<td><a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
+															<td><a asp-action="DeleteProductDetails" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+															<a asp-action="EditProductDetails" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
 													</tr>
 												}
 											}
@@ -194,7 +181,7 @@
 												<div class="row">
 													<div class="col-sm-12">
 														<lable for="ProductId"> اسم المنتج</lable>
-														<select name="ProductId" class="form-control form-control-sm">
+															<select name="ProductId" class="form-control form-control-sm" required>
 															@if(Model != null)
 															{
 																@foreach (var item in Model)
@@ -208,31 +195,31 @@
 												<div class="row">
 													<div class="col-sm-6">
 														<lable for="Description"> وصف المنتج</lable>
-														<input type="text" name="Description" id="Description" class="form-control form-control-sm" />
+															<input type="text" name="Description" id="Description" class="form-control form-control-sm" required />
 													</div>
 													<div class="col-sm-6">
 														<lable for="Price"> سعر المنتج</lable>
-														<input type="text" name="Price" id="Price" class="form-control" />
+														<input type="text" name="Price" id="Price" class="form-control" required />
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-sm-6">
 														<lable for="Model"> طراز المنتج</lable>
-														<input type="text" name="Model" id="Model" class="form-control form-control-sm" />
+															<input type="text" name="Model" id="Model" class="form-control form-control-sm" required />
 													</div>
 													<div class="col-sm-6">
 														<lable for="QTY"> كمية المنتج</lable>
-														<input type="number" name="QTY" id="QTY" class="form-control" />
+															<input type="number" name="QTY" id="QTY" class="form-control" required />
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-sm-6">
 														<lable for="Color"> لون المنتج</lable>
-														<input type="text" name="Color" id="Color" class="form-control form-control-sm" />
+															<input type="text" name="Color" id="Color" class="form-control form-control-sm" required />
 													</div>
 													<div class="col-sm-6">
 														<lable for="Image"> صورة المنتج</lable>
-														<input type="text" name="Image" id="Image" class="form-control" />
+															<input type="text" name="Image" id="Image" class="form-control" required />
 													</div>
 												</div>
 											</div>
