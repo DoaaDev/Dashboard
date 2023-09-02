@@ -4,7 +4,7 @@
     var product = ViewBag.product;
 }
 
-<div class="container">
+<div class="container" dir="rtl">
     <section style="background-color: #eee;">
         <div class="container py-5">
             <div class="row justify-content-center mb-3">
@@ -53,14 +53,14 @@
 
                                             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                                 <!-- Quantity -->
-                                                <label class="form-label" for="form1">الكمية : متوفر @item.QTY</label>
+                                                <label class="form-label" for="form1">الكمية</label>
                                                 <div class="d-flex mb-4" style="max-width: 300px">
                                                     <button class="btn btn-primary px-3 me-2"
                                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                         <i class="fas fa-minus"></i>
                                                     </button>
                                                     <div class="form-outline">
-                                                        <input id="form1" min="1" max="@item.QTY" name="quantity" value="1" type="number" class="form-control" />
+                                                        <input id="form1" min="1" max="1" name="quantity" value="1" type="number" class="form-control" />
                                                     </div>
 
                                                     <button class="btn btn-primary px-3 ms-2"

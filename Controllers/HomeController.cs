@@ -124,8 +124,20 @@ namespace Dashboard.Controllers
 			ViewBag.Name = Name;
 			return View(products);
 		}
+		public IActionResult Invoices()
+		{
+			var invoice = _context.invoice.ToList();
+			var Name = HttpContext.User.Identity.Name;
+			//CookieOptions options = new CookieOptions();
+			//options.Expires = DateTime.Now.AddMinutes(10);
+			//Response.Cookies.Append("Name", Name, options);
 
-        public IActionResult Privacy()
+			HttpContext.Session.SetString("Name", Name);
+			ViewBag.Name = Name;
+			return View(invoice);
+		}
+
+		public IActionResult Privacy()
         {
             return View();
         }

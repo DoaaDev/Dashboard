@@ -7,17 +7,19 @@ namespace Dashboard.Models
         [Key]
         public int Id { get; set; }
 
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
         public int ProductId { get; set; }
+
+        public string ProductName { get; set; }
 
         public double Price { get; set; }
 
         public int QTY { get; set; }
 
-        public float Tax { get; set; }
+        public double Tax { get; set; }
 
-        public float Discount { get; set; }
+        public double Discount { get; set; }
 
         public double Total { get; set; }
 

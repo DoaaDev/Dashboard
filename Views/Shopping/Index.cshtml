@@ -1,14 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<ProductDetails>;
 @{
     Layout = "~/Views/Shared/_LayoutShopping.cshtml";
-    @model IEnumerable<ProductDetails>;
     var product = ViewBag.product;
 }
 
-<div class="container">
-        <section style="background-color: #eee;">
+<div class="container" dir="rtl">
+    <section style="background-color: #eee;">
             <div class="container py-5">
             <div class="row justify-content-center mb-3">
                 <h1>المنتجات</h1>
