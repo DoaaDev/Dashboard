@@ -56,43 +56,94 @@
 				<button type="submit" class="btn btn-primary mb-3">حفظ</button>
 		</div>
 	</div>
-		<div class="row d-flex justifiy-content-center">
-		<div class="clo-sm-6">
-					<!--begin::Table-->
-					<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
-						<!--begin::Table head-->
-						<thead>
-							<!--begin::Table row-->
-							<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-								<th class="min-w-125px text-end" style="font-family:cairo">رقم البطاقة </th>
-								<th class="min-w-125px text-end" style="font-family:cairo"> نوع البطاقة </th>
-								<th clospan="2" class="min-w-125px text-end" style="font-family:cairo">إجراء </th>
-							</tr>
-							<!--end::Table row-->
-						</thead>
-						<!--end::Table head-->
-						<!--begin::Table body-->
-						<tbody class="fw-semibold text-gray-600">
+	<div class="container-fluid" dir="rtl">
+				<div class="row ">
+					<div class="col-sm-10">
+						<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+							<!--begin::Content wrapper-->
+							<div class="d-flex flex-column flex-column-fluid">
+								<!--begin::Toolbar-->
+								<!--end::Toolbar-->
+								<!--begin::Content-->
+								<div id="kt_app_content p-10" class="app-content flex-column-fluid">
+									<!--begin::Content container-->
+									<div id="kt_app_content_container p-5" class="app-container container-xxl" dir="rtl">
+										<div class="card" style="overflow-x: auto;">
+											<!--begin::Card header-->
+											<div class="card-header border-0 pt-6">
+												<!--begin::Card title-->
+												<div class="card-title">
+													<h4>بطاقات الدفع المعتمدة</h4>
+												</div>
+												<!--begin::Card title-->
+												<!--begin::Card toolbar-->
+												<div class="card-toolbar">
+													<!--begin::Toolbar-->
+													<div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+													</div>
+													<!--end::Toolbar-->
+													<!--begin::Group actions-->
+													<div class="d-flex justify-content-end align-items-center d-none" data-kt-customer-table-toolbar="selected">
+														<div class="fw-bold me-5">
+															<span class="me-2" data-kt-customer-table-select="selected_count"></span>Selected
+														</div>
+														<button type="button" class="btn btn-danger" data-kt-customer-table-select="delete_selected">Delete Selected</button>
+													</div>
+													<!--end::Group actions-->
+												</div>
+												<!--end::Card toolbar-->
+											</div>
+											<!--end::Card header-->
+											<!-- <h1>Hi,ViewBag.Name</h1> -->
+											<!--begin::Card body-->
+											<div class="card-body pt-0">
+												<!--begin::Table-->
+												<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
+													<!--begin::Table head-->
+													<thead>
+														<!--begin::Table row-->
+														<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+															<th class="min-w-125px text-end" style="font-family:cairo">رقم البطاقة </th>
+															<th class="min-w-125px text-end" style="font-family:cairo"> نوع البطاقة </th>
+															<th clospan="2" class="min-w-125px text-end" style="font-family:cairo">إجراء </th>
+														</tr>
+														<!--end::Table row-->
+													</thead>
+													<!--end::Table head-->
+													<!--begin::Table body-->
+													<tbody class="fw-semibold text-gray-600">
+														@if (paymentAcceptList != null)
+														{
+															foreach (var item in paymentAcceptList)
+															{
+																<tr>
+																	<td>@item.Id</td>
+																	<td>@item.Payment</td>
+																	<td>
+																		<a style="padding-left:2px; padding-right:2px;"><i class="fa fa-trash"></i></a>
+																		<a><i class="fa fa-edit"></i></a>
+																	</td>
+																</tr>
+															}
+														}
+													</tbody>
+													<!--end::Table body-->
+												</table>
+												<!--end::Table-->
+											</div>
+											<!--end::Card body-->
+										</div>
 
-							@if (paymentAcceptList != null)
-							{
-								foreach (var item in paymentAcceptList)
-								{
-									<tr>
-										<td>@item.Id</td>
-										<td>@item.Payment</td>
-										<td>
-											<a><i class="fa fa-trash"></i></a>
-											<a><i class="fa fa-edit"></i></a>
-										</td>
-									</tr>
-								}
-							}
+									</div>
+									<!--end::Content container-->
+								</div>
+								<!--end::Content-->
+							</div>
 
-						</tbody>
-						<!--end::Table body-->
-					</table>
-		</div>
-	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 	</form>
 </div>

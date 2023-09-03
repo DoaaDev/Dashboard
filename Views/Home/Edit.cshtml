@@ -1,18 +1,53 @@
 ﻿@model Product
 @{
 }
+<div id="layoutSidenav">
+	<div id="layoutSidenav_nav">
+		<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+			<div class="sb-sidenav-menu">
+				<div class="nav">
+					<div class="sb-sidenav-menu-heading">Core</div>
+					<a class="nav-link" href="index.html">
+						<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+						Dashboard
+					</a>
+					<a class="nav-link" asp-action="Index">
+						<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+						المنتجات
+					</a>
+					<a class="nav-link" asp-action="ProductDetails">
+						<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+						تفاصيل المنتجات
+					</a>
+					<a class="nav-link" asp-action="Invoices">
+						<div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+						الفواتير
+					</a>
+					<a class="nav-link" asp-action="PaymentAccept">
+						<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+						بطاقات الدفع المعتمدة
+					</a>
+				</div>
+			</div>
+			<div class="sb-sidenav-footer">
+				<div class="small">Logged in as:</div>
+				<partial name="_LoginPartial" />
+			</div>
+		</nav>
+	</div>
+</div>
 <div class="container">
     <form asp-action="Update" method="post" dir="rtl">
         <input type="hidden" asp-for="@Model.Id" />
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-8">
                 <label for="ProductName">اسم المنتج</label>
                 <input asp-for="@Model.ProductName" class="form-control" id="ProductName" name="ProductName" required/>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-12 d-flex mt-2 justify-content-sm-center">
+            <div class="col-sm-8 d-flex mt-2 justify-content-sm-center">
 
                 <button type="submit" class="btn btn-primary p-2">حفظ</button>
             </div>

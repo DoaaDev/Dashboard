@@ -1,7 +1,6 @@
 ﻿@model Cart;
 @{
     Layout = "~/Views/Shared/_LayoutShopping.cshtml";
-    var product = ViewBag.product;
 }
 
 <div class="container" dir="rtl">
@@ -19,48 +18,6 @@
 
                                     <div class="row">
 
-                                        <div class="col-lg-7">
-                                            <h5 class="mb-3">
-                                                <a href="#!" class="text-body">
-                                                    <i class="fas fa-long-arrow-alt-right me-2"></i> متابعة التسوق
-                                                </a>
-                                            </h5>
-                                            <hr>
-
-                                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                                <div>
-                                                    <p class="mb-1">سلة التسوق</p>
-                                                    <p class="mb-0">لديك منتجات في السلة</p>
-                                                </div>
-                                            </div>
-                                            <div class="card mb-3 mb-lg-0">
-                                                <div class="card-body">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="d-flex flex-row align-items-center">
-                                                            <div>
-                                                                <img src="~/assets/images/@Model.Image"
-                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <h5>                         
-                                                                 <p><strong>@product.ProductName</strong></p>
-                                                                </h5>
-                                                                <p class="small mb-0">@Model.Color</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-flex flex-row align-items-center">
-                                                            <div style="width: 50px;">
-                                                                <h5 class="fw-normal mb-0">@Model.QTY</h5>
-                                                            </div>
-                                                            <div style="width: 80px;">
-                                                                <h5 class="mb-0">@Model.Price</h5>
-                                                            </div>
-                                                            <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="col-lg-5">
 
                                             <div class="card bg-primary text-white rounded-3">
@@ -83,7 +40,7 @@
                                                     </a>
                                                     <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
 
-                                                 <!--   <form asp-action="Payment" class="mt-4"> -->
+                                                    <form asp-action="Payment" class="mt-4">
                                                         <div class="form-outline form-white mb-4">
                                                             <input type="text" id="typeName" class="form-control form-control-lg" siez="17" style="border-bottom:1px solid"
                                                                  name="HolderName"  placeholder="اسم حامل البطاقة"   />
@@ -111,36 +68,20 @@
                                                                     <label class="form-label" for="typeText">Cvv</label>
                                                                 </div>
                                                             </div>
-                                                            <input type="hidden" name="CustomerId" value="@Model.CostumerId" />
-                                                            <input type="hidden" name="CartId" value="@Model.Id"/>
-                                                            <input type="hidden" name="ProductId" value="@Model.ProductId"/>
+                                                            <input type="hidden" name="CustomerId" asp-for="@Model.CostumerId" />
+                                                            <input type="hidden" name="CartId" asp-for="@Model.Id"/>
+                                                            <input type="hidden" name="ProductId" asp-for="@Model.ProductId"/>
                                                         </div>
 
-                                                       <!-- <button class="btn btn-info btn-block btn-lg" type="submit">
+                                                        <button class="btn btn-info btn-block btn-lg" type="submit">
                                                             اضافة البطاقة
                                                         </button> 
 
-                                                    </form> -->
+                                                    </form>
 
                                                     <hr class="my-4">
-
-                                                    <div class="d-flex justify-content-between">
-                                                        <p class="mb-2">المجموع الفرعي</p>
-                                                        <p class="mb-2">@Model.Price</p>
-                                                    </div>
-
-                                                    <div class="d-flex justify-content-between">
-                                                        <p class="mb-2">الضريبة</p>
-                                                        <p class="mb-2">@Model.Tax</p>
-                                                    </div>
-
-                                                    <div class="d-flex justify-content-between mb-4">
-                                                        <p class="mb-2">المجموع (شامل الضريبة)</p>
-                                                        <p class="mb-2">@Model.Total</p>
-                                                    </div>
                                                     <a asp-action="Invoice" asp-route-id="@Model.Id" class="btn btn-info btn-block btn-lg">
                                                         <div class="d-flex justify-content-between">
-                                                            <span>@Model.Total</span>
                                                             <span>الدفع<i class="fas fa-long-arrow-alt-left ms-2"></i></span>
                                                         </div>
                                                     </a>

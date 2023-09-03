@@ -16,6 +16,8 @@ namespace FirstProject.Data
         public DbSet<Invoice> invoice { get; set; }
         public DbSet<PaymentAccept> paymentAccept { get; set; }
         public DbSet<Cart> cart { get; set; }
+        public DbSet<Payment> payment { get; set; }
+
 
     }
 }

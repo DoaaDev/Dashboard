@@ -86,7 +86,9 @@ namespace Dashboard.Controllers
 		{
             var paymentAcceptList = _context.paymentAccept.ToList();
             ViewBag.paymentAcceptList = paymentAcceptList;
-            return View();
+			var Name = HttpContext.User.Identity.Name;
+			ViewBag.Name = Name;
+			return View();
 		}
 		[HttpPost]
 		public IActionResult PaymentAccept(PaymentAccept paymentAccept)
@@ -116,11 +118,12 @@ namespace Dashboard.Controllers
         {
 			var products = _context.product.ToList();
 			var Name = HttpContext.User.Identity.Name;
+			//cookie
 			//CookieOptions options = new CookieOptions();
 			//options.Expires = DateTime.Now.AddMinutes(10);
 			//Response.Cookies.Append("Name", Name, options);
-
-			HttpContext.Session.SetString("Name", Name);
+			//session
+			//HttpContext.Session.SetString("Name", Name);
 			ViewBag.Name = Name;
 			return View(products);
 		}
@@ -128,11 +131,6 @@ namespace Dashboard.Controllers
 		{
 			var invoice = _context.invoice.ToList();
 			var Name = HttpContext.User.Identity.Name;
-			//CookieOptions options = new CookieOptions();
-			//options.Expires = DateTime.Now.AddMinutes(10);
-			//Response.Cookies.Append("Name", Name, options);
-
-			HttpContext.Session.SetString("Name", Name);
 			ViewBag.Name = Name;
 			return View(invoice);
 		}

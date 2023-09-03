@@ -88,6 +88,24 @@ namespace Dashboard.Controllers.Shopping
                 var cartItem = _context.cart.SingleOrDefault(p => p.Id == cartItemID);
                return View(cartItem);
         }
+
+        public IActionResult Payment(int cartId)
+        {
+            var cartItem = _context.cart.SingleOrDefault(p => p.Id == cartId);
+            return View(cartItem);
+        }
+
+        [HttpPost]
+        public IActionResult Payment(Payment payment)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.payment.Add(payment);
+                _context.SaveChanges();
+               return RedirectToAction("Invoice",payment.CartId);
+            }
+            return View();
+        }
         public IActionResult InvoiceView(Invoice invoice)
         {
             var user = HttpContext.User.Identity.Name;
